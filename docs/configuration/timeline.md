@@ -62,16 +62,17 @@ timeline:
       # [...]
 ```
 
-| Option                  | Default | Description                                                                                                                                                     |
-| ----------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `mode`                  | `right` | Whether to show the thumbnail carousel `below` the media, `above` the media, in a drawer to the `left` or `right` of the media or to hide it entirely (`none`). |
-| `show_details`          | `true`  | Whether to show event details (e.g. duration, start time, object detected, etc) alongside the thumbnail.                                                        |
-| `show_download_control` | `false` | Whether to show the download control on each thumbnail.                                                                                                         |
-| `show_favorite_control` | `true`  | Whether to show the favorite ('star') control on each thumbnail.                                                                                                |
-| `show_info_control`     | `true`  | Whether to show the info ('i') control on each thumbnail.                                                                                                       |
-| `show_review_control`   | `true`  | Whether to show the review ('check') control on each thumbnail.                                                                                                 |
-| `show_timeline_control` | `false` | Whether to show the timeline ('target') control on each thumbnail.                                                                                              |
-| `size`                  | `100`   | The size of the thumbnails in the thumbnail carousel in pixels. Must be &gt;= `75` and &lt;= `300`.                                                             |
+| Option                  | Default | Description                                                                                                                                                                 |
+| ----------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mode`                  | `right` | Whether to show the thumbnail carousel `below` the media, `above` the media, in a drawer to the `left` or `right` of the media or to hide it entirely (`none`).             |
+| `show_age`              | `false` | Whether to overlay the age since the media start time (e.g. `5 min. ago`). Updates while visible, independently of `show_details`. Omitted when no start time is available. |
+| `show_details`          | `true`  | Whether to show event details (e.g. duration, start time, object detected, etc) alongside the thumbnail.                                                                    |
+| `show_download_control` | `false` | Whether to show the download control on each thumbnail.                                                                                                                     |
+| `show_favorite_control` | `true`  | Whether to show the favorite ('star') control on each thumbnail.                                                                                                            |
+| `show_info_control`     | `true`  | Whether to show the info ('i') control on each thumbnail.                                                                                                                   |
+| `show_review_control`   | `true`  | Whether to show the review ('check') control on each thumbnail.                                                                                                             |
+| `show_timeline_control` | `false` | Whether to show the timeline ('target') control on each thumbnail.                                                                                                          |
+| `size`                  | `100`   | The size of the thumbnails in the thumbnail carousel in pixels. Must be &gt;= `75` and &lt;= `300`.                                                                         |
 
 ## Fully expanded reference
 
@@ -89,6 +90,7 @@ timeline:
     thumbnails:
       mode: right
       size: 100
+      show_age: false
       show_details: true
       show_download_control: false
       show_favorite_control: true
