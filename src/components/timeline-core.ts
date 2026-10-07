@@ -49,6 +49,9 @@ export class AdvancedCameraCardTimelineThumbnail extends LitElement {
   public item?: IdType;
 
   @property({ attribute: true, type: Boolean })
+  public show_age = false;
+
+  @property({ attribute: true, type: Boolean })
   public details = false;
 
   /**
@@ -95,6 +98,7 @@ export class AdvancedCameraCardTimelineThumbnail extends LitElement {
     }
 
     return html` <advanced-camera-card-thumbnail
+      ?show_age=${this.show_age}
       .hass=${dataRequest.hass}
       .cameraManager=${dataRequest.cameraManager}
       .viewItemManager=${dataRequest.viewItemManager}

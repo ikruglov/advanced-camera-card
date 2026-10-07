@@ -172,6 +172,7 @@ export class AdvancedCameraCardThumbnailCarousel extends LitElement {
       item.includesTime(seekTarget)
         ? seekTarget
         : undefined}
+      ?show_age=${!!this.config?.show_age}
       ?details=${!!this.config?.show_details}
       ?show_favorite_control=${this.config?.show_favorite_control}
       ?show_timeline_control=${this.config?.show_timeline_control}

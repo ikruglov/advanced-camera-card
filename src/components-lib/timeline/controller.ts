@@ -1030,7 +1030,7 @@ export class TimelineController {
         disabled: false,
         filterOptions: {
           whiteList: {
-            'advanced-camera-card-timeline-thumbnail': ['details', 'item'],
+            'advanced-camera-card-timeline-thumbnail': ['details', 'item', 'show_age'],
             div: ['title'],
             span: ['style'],
           },
@@ -1058,6 +1058,7 @@ export class TimelineController {
         <advanced-camera-card-timeline-thumbnail
           item='${item.id}'
           ${this._thumbnailConfig?.show_details ? 'details' : ''}
+          ${this._thumbnailConfig?.show_age ? 'show_age' : ''}
         >
         </advanced-camera-card-timeline-thumbnail>`;
   }

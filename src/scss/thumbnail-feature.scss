@@ -148,3 +148,26 @@ advanced-camera-card-icon.download {
   right: 2px;
   bottom: 2px;
 }
+
+.age {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  max-width: calc(100% - 10px);
+  box-sizing: border-box;
+  padding: 2px 4px;
+  border-radius: var(--advanced-camera-card-border-radius-final);
+  background-color: var(--advanced-camera-card-control-background-transparent);
+  color: var(--advanced-camera-card-control-foreground);
+  font-size: var(--ha-font-size-m, 14px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+  text-align: left;
+  pointer-events: none;
+}
+
+.age.has-bottom-controls {
+  bottom: calc(var(--mdc-icon-size, 24px) + 4px);
+}

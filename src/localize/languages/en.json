@@ -295,6 +295,7 @@
             "none": "None",
             "right": "Right drawer"
           },
+          "show_age": "Show age",
           "show_details": "Show details",
           "show_download_control": "Show download control",
           "show_favorite_control": "Show favorite control",
@@ -973,6 +974,7 @@
     "camera": "Camera",
     "download": "Download media",
     "duration": "Duration",
+    "just_now": "just now",
     "no_thumbnail": "No thumbnail available",
     "retain_indefinitely": "Retain media indefinitely",
     "seek": "Seek",

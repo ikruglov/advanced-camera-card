@@ -40,6 +40,9 @@ export class AdvancedCameraCardThumbnail extends LitElement {
   public item?: ViewItem;
 
   @property({ attribute: true, type: Boolean })
+  public show_age = false;
+
+  @property({ attribute: true, type: Boolean })
   public details = false;
 
   @property({ attribute: true, type: Boolean })
@@ -75,6 +78,7 @@ export class AdvancedCameraCardThumbnail extends LitElement {
     return html`
       <advanced-camera-card-thumbnail-feature
         .cameraManager=${this.cameraManager}
+        .show_age=${this.show_age}
         .hasDetails=${this.details}
         .hass=${this.hass}
         .item=${this.item}

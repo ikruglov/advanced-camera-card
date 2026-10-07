@@ -7,6 +7,7 @@ export const THUMBNAIL_WIDTH_MAX = 300;
 
 export const thumbnailControlsBaseDefaults = {
   size: THUMBNAIL_WIDTH_DEFAULT,
+  show_age: false,
   show_details: true,
   show_favorite_control: true,
   show_timeline_control: false,
@@ -22,6 +23,7 @@ export const thumbnailsControlBaseSchema = z.object({
     .min(THUMBNAIL_WIDTH_MIN)
     .max(THUMBNAIL_WIDTH_MAX)
     .default(thumbnailControlsBaseDefaults.size),
+  show_age: z.boolean().default(thumbnailControlsBaseDefaults.show_age),
   show_details: z.boolean().default(thumbnailControlsBaseDefaults.show_details),
   show_favorite_control: z
     .boolean()

@@ -118,6 +118,7 @@ export class AdvancedCameraCardGallery extends LitElement {
       .hass=${this.hass}
       .item=${this._upFolderItem}
       .viewManagerEpoch=${this.viewManagerEpoch}
+      ?show_age=${!!this.galleryConfig?.controls.thumbnails.show_age}
       ?details=${!!this.galleryConfig?.controls.thumbnails.show_details}
       @click=${(ev: Event) => {
         stopEventFromActivatingCardWideActions(ev);
@@ -144,6 +145,7 @@ export class AdvancedCameraCardGallery extends LitElement {
             .item=${item}
             .viewManagerEpoch=${this.viewManagerEpoch}
             ?selected=${item === selected}
+            ?show_age=${!!this.galleryConfig?.controls.thumbnails.show_age}
             ?details=${!!this.galleryConfig?.controls.thumbnails.show_details}
             ?show_favorite_control=${!!this.galleryConfig?.controls.thumbnails
               .show_favorite_control}

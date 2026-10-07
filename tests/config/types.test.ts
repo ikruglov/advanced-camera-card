@@ -121,6 +121,7 @@ describe('config defaults', () => {
           },
           thumbnails: {
             mode: 'right',
+            show_age: false,
             show_details: true,
             show_download_control: false,
             show_favorite_control: true,
@@ -167,6 +168,7 @@ describe('config defaults', () => {
             mode: 'right',
           },
           thumbnails: {
+            show_age: false,
             show_details: false,
             show_download_control: false,
             show_favorite_control: true,
@@ -201,6 +203,7 @@ describe('config defaults', () => {
           },
           thumbnails: {
             mode: 'right',
+            show_age: false,
             show_details: true,
             show_download_control: false,
             show_favorite_control: true,
@@ -495,6 +498,7 @@ describe('config defaults', () => {
         controls: {
           thumbnails: {
             mode: 'right',
+            show_age: false,
             show_details: true,
             show_download_control: false,
             show_favorite_control: true,
@@ -1970,5 +1974,24 @@ describe('automations should accept Home Assistant input shorthands', () => {
 
   it('should reject a non-object automation', () => {
     expect(automationsSchema.safeParse(['not-an-object']).success).toBe(false);
+  });
+});
+
+describe('thumbnail ages', () => {
+  it.each(['live', 'media_gallery', 'media_viewer', 'timeline'] as const)(
+    'should allow image-only age badges in %s',
+    (section) => {
+      const config = createConfig({
+        [section]: { controls: { thumbnails: { show_age: true, show_details: false } } },
+      });
+      expect(config[section].controls.thumbnails.show_age).toBe(true);
+      expect(config[section].controls.thumbnails.show_details).toBe(false);
+    },
+  );
+
+  it('should reject a non-boolean show_age value', () => {
+    expect(() =>
+      createConfig({ live: { controls: { thumbnails: { show_age: 'yes' } } } }),
+    ).toThrow();
   });
 });

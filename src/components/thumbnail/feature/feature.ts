@@ -17,6 +17,7 @@ import {
   MediaNotificationController,
   type NotificationControlsContext,
 } from '../../../components-lib/media/notification-controller';
+import { ThumbnailAgeController } from '../../../components-lib/thumbnail/age-controller';
 import { ThumbnailFeatureController } from '../../../components-lib/thumbnail/feature/controller';
 import type { HomeAssistant } from '../../../ha/types';
 import { localize } from '../../../localize/localize';
@@ -58,6 +59,9 @@ export class AdvancedCameraCardThumbnailFeature extends LitElement {
   public hasDetails?: boolean;
 
   @property({ attribute: true, type: Boolean })
+  public show_age = false;
+
+  @property({ attribute: true, type: Boolean })
   public show_favorite_control = false;
 
   @property({ attribute: true, type: Boolean })
@@ -74,6 +78,8 @@ export class AdvancedCameraCardThumbnailFeature extends LitElement {
 
   @property({ attribute: false })
   public filterReviewed?: boolean;
+
+  private _ageController = new ThumbnailAgeController(this);
 
   private _controller = new ThumbnailFeatureController();
 
@@ -143,6 +149,7 @@ export class AdvancedCameraCardThumbnailFeature extends LitElement {
       placeholder: true,
     };
 
+    const age = this._ageController.getAge();
     const thumbnail = this._controller.getThumbnail();
     const thumbnailClass = this._controller.getThumbnailClass();
     const thumbnailClasses = classMap({
@@ -166,6 +173,17 @@ export class AdvancedCameraCardThumbnailFeature extends LitElement {
                 .icon=${{ icon: this._controller.getIcon() }}
               ></advanced-camera-card-icon>`
             : ''}
+        ${age
+          ? html`<span
+              class=${classMap({
+                age: true,
+                'has-bottom-controls':
+                  !hasText && (shouldShowTimelineControl || !!shouldShowDownloadControl),
+              })}
+              title=${age}
+              >${age}</span
+            >`
+          : ''}
       </div>
       ${shouldShowReviewControl
         ? html`<advanced-camera-card-icon

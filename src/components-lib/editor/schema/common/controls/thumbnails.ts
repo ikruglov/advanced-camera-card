@@ -65,6 +65,11 @@ export const getThumbnailsSchema = (options?: {
   schema.push(
     createGrid([
       {
+        name: 'show_age',
+        label: localize('config.common.controls.thumbnails.show_age'),
+        selector: { boolean: {} },
+      },
+      {
         name: 'show_details',
         label: localize('config.common.controls.thumbnails.show_details'),
         selector: { boolean: {} },

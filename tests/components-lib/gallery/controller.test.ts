@@ -25,6 +25,7 @@ const createThumbnailConfig = (
   config?: Partial<MediaGalleryThumbnailsConfig>,
 ): MediaGalleryThumbnailsConfig => ({
   size: THUMBNAIL_WIDTH_DEFAULT,
+  show_age: false,
   show_details: true,
   show_favorite_control: true,
   show_timeline_control: true,
