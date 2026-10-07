@@ -91,7 +91,7 @@ const getControlsSchema = (): HAFormExpandableSchema => ({
     },
     getCallSchema(),
     getNextPreviousSchema({ allowIcons: true, allowCall: true }),
-    getThumbnailsSchema({ includeMode: true }),
+    getThumbnailsSchema({ includeMode: true, includeOrder: true }),
     getMiniTimelineSchema(),
     getPTZSchema({ includeAutoMode: true }),
   ],

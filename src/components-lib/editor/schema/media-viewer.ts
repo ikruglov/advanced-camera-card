@@ -31,7 +31,7 @@ const getControlsSchema = (): HAFormExpandableSchema => ({
       selector: { boolean: {} },
     },
     getNextPreviousSchema({ allowThumbnails: true }),
-    getThumbnailsSchema({ includeMode: true }),
+    getThumbnailsSchema({ includeMode: true, includeOrder: true }),
     getMiniTimelineSchema(),
     getPTZSchema({ includeAutoMode: false }),
   ],

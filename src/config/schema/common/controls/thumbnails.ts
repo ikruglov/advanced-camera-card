@@ -54,3 +54,17 @@ export const thumbnailsControlSchema = thumbnailsControlBaseSchema.extend({
     .default(thumbnailControlsDefaults.mode),
 });
 export type ThumbnailsControlConfig = z.infer<typeof thumbnailsControlSchema>;
+
+export const thumbnailCarouselControlsDefaults = {
+  ...thumbnailControlsDefaults,
+  order: 'oldest_first' as const,
+};
+
+export const thumbnailCarouselControlsSchema = thumbnailsControlSchema.extend({
+  order: z
+    .enum(['oldest_first', 'newest_first'])
+    .default(thumbnailCarouselControlsDefaults.order),
+});
+export type ThumbnailCarouselControlsConfig = z.infer<
+  typeof thumbnailCarouselControlsSchema
+>;

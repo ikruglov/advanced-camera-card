@@ -295,6 +295,11 @@
             "none": "None",
             "right": "Right drawer"
           },
+          "order": "Thumbnail order",
+          "orders": {
+            "newest_first": "Newest first",
+            "oldest_first": "Oldest first"
+          },
           "show_age": "Show age",
           "show_details": "Show details",
           "show_download_control": "Show download control",

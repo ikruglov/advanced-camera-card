@@ -9,11 +9,12 @@ import { createNumberSelector, createSelectSelector } from '../selectors';
 
 /**
  * Get the schema for a thumbnails control group.
- * @param options Whether to include the mode field.
+ * @param options Whether to include carousel placement and ordering fields.
  * @returns The form schema for the group.
  */
 export const getThumbnailsSchema = (options?: {
   includeMode?: boolean;
+  includeOrder?: boolean;
 }): HAFormExpandableSchema => {
   const sizeField: HAFormSchema = {
     name: 'size',
@@ -26,8 +27,7 @@ export const getThumbnailsSchema = (options?: {
 
   const schema: HAFormSchema[] = [];
   if (options?.includeMode) {
-    // Where the thumbnails go and how big they are: both describe the space
-    // they take up.
+    // Carousel placement, ordering, and size.
     schema.push(
       createGrid([
         {
@@ -56,6 +56,28 @@ export const getThumbnailsSchema = (options?: {
             },
           ]),
         },
+        ...(options.includeOrder
+          ? [
+              {
+                name: 'order',
+                label: localize('config.common.controls.thumbnails.order'),
+                selector: createSelectSelector([
+                  {
+                    value: 'oldest_first',
+                    label: localize(
+                      'config.common.controls.thumbnails.orders.oldest_first',
+                    ),
+                  },
+                  {
+                    value: 'newest_first',
+                    label: localize(
+                      'config.common.controls.thumbnails.orders.newest_first',
+                    ),
+                  },
+                ]),
+              },
+            ]
+          : []),
         sizeField,
       ]),
     );

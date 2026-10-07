@@ -5,8 +5,8 @@ import { BUTTON_SIZE_MIN } from './common/const';
 import { nextPreviousControlConfigSchema } from './common/controls/next-previous';
 import { ptzControlsConfigSchema, ptzControlsDefaults } from './common/controls/ptz';
 import {
-  thumbnailControlsDefaults,
-  thumbnailsControlSchema,
+  thumbnailCarouselControlsDefaults,
+  thumbnailCarouselControlsSchema,
 } from './common/controls/thumbnails';
 import {
   miniTimelineConfigDefault,
@@ -134,7 +134,7 @@ export const liveConfigDefault = {
       style: 'chevrons' as const,
     },
     ptz: ptzControlsDefaults,
-    thumbnails: thumbnailControlsDefaults,
+    thumbnails: thumbnailCarouselControlsDefaults,
     timeline: miniTimelineConfigDefault,
     wheel: true,
   },
@@ -180,7 +180,7 @@ export const liveConfigSchema = z
           })
           .default(liveConfigDefault.controls.next_previous),
         ptz: ptzControlsConfigSchema.default(liveConfigDefault.controls.ptz),
-        thumbnails: thumbnailsControlSchema.default(
+        thumbnails: thumbnailCarouselControlsSchema.default(
           liveConfigDefault.controls.thumbnails,
         ),
         timeline: miniTimelineConfigSchema.default(liveConfigDefault.controls.timeline),

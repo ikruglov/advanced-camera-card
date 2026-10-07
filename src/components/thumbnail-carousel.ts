@@ -21,7 +21,8 @@ import {
   navigateUp,
   type FolderNavigationParamaters,
 } from '../components-lib/navigation.js';
-import type { ThumbnailsControlConfig } from '../config/schema/common/controls/thumbnails.js';
+import { ThumbnailCarouselController } from '../components-lib/thumbnail/carousel-controller.js';
+import type { ThumbnailCarouselControlsConfig } from '../config/schema/common/controls/thumbnails.js';
 import type { CardWideConfig } from '../config/schema/types.js';
 import type { HomeAssistant } from '../ha/types.js';
 import thumbnailCarouselStyle from '../scss/thumbnail-carousel.scss?inline';
@@ -58,7 +59,7 @@ export class AdvancedCameraCardThumbnailCarousel extends LitElement {
   public viewItemManager?: ViewItemManager;
 
   @property({ attribute: false })
-  public config?: ThumbnailsControlConfig;
+  public config?: ThumbnailCarouselControlsConfig;
 
   @property({ attribute: false })
   public cardWideConfig?: CardWideConfig;
@@ -70,6 +71,7 @@ export class AdvancedCameraCardThumbnailCarousel extends LitElement {
   public locked?: boolean;
 
   private _thumbnails: TemplateResult[] = [];
+  private _controller = new ThumbnailCarouselController();
   private _builder: UnifiedQueryBuilder | null = null;
 
   private _getFolderNavOptions(): FolderNavigationParamaters | undefined {
@@ -112,6 +114,10 @@ export class AdvancedCameraCardThumbnailCarousel extends LitElement {
       'viewManagerEpoch',
     ] as const;
     if (renderProperties.some((prop) => changedProps.has(prop))) {
+      this._controller.setItems(
+        this.viewManagerEpoch?.manager.getView()?.queryResults?.getResults() ?? [],
+        this.config?.order,
+      );
       this._thumbnails = this._renderThumbnails();
     }
 
@@ -125,7 +131,9 @@ export class AdvancedCameraCardThumbnailCarousel extends LitElement {
 
   private _getSelectedSlide(): number | null {
     const view = this.viewManagerEpoch?.manager.getView();
-    const selectedIndex = view?.queryResults?.getSelectedIndex() ?? null;
+    const selectedIndex = this._controller.getSelectedIndex(
+      view?.queryResults?.getSelectedResult(),
+    );
     if (selectedIndex === null) {
       return null;
     }
@@ -199,7 +207,7 @@ export class AdvancedCameraCardThumbnailCarousel extends LitElement {
     const view = this.viewManagerEpoch?.manager.getView();
     const selectedIndex = this._getSelectedSlide();
 
-    for (const item of view?.queryResults?.getResults() ?? []) {
+    for (const item of this._controller.getItems()) {
       const clickHandler = (item: ViewItem, ev: Event) => {
         stopEventFromActivatingCardWideActions(ev);
         if (ViewItemClassifier.isMedia(item)) {

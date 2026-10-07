@@ -121,6 +121,7 @@ describe('config defaults', () => {
           },
           thumbnails: {
             mode: 'right',
+            order: 'oldest_first',
             show_age: false,
             show_details: true,
             show_download_control: false,
@@ -203,6 +204,7 @@ describe('config defaults', () => {
           },
           thumbnails: {
             mode: 'right',
+            order: 'oldest_first',
             show_age: false,
             show_details: true,
             show_download_control: false,

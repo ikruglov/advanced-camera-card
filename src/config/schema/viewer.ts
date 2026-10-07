@@ -4,8 +4,8 @@ import { actionsSchema } from './actions/types';
 import { nextPreviousControlConfigSchema } from './common/controls/next-previous';
 import { ptzControlsConfigSchema, ptzControlsDefaults } from './common/controls/ptz';
 import {
-  thumbnailControlsDefaults,
-  thumbnailsControlSchema,
+  thumbnailCarouselControlsDefaults,
+  thumbnailCarouselControlsSchema,
 } from './common/controls/thumbnails';
 import {
   miniTimelineConfigDefault,
@@ -35,7 +35,7 @@ export const viewerConfigDefault = {
       size: 48,
       style: 'thumbnails' as const,
     },
-    thumbnails: thumbnailControlsDefaults,
+    thumbnails: thumbnailCarouselControlsDefaults,
     timeline: miniTimelineConfigDefault,
     ptz: {
       ...ptzControlsDefaults,
@@ -103,7 +103,7 @@ export const viewerConfigSchema = z
             mode: z.enum(['off', 'on']).default(viewerConfigDefault.controls.ptz.mode),
           })
           .default(viewerConfigDefault.controls.ptz),
-        thumbnails: thumbnailsControlSchema.default(
+        thumbnails: thumbnailCarouselControlsSchema.default(
           viewerConfigDefault.controls.thumbnails,
         ),
         timeline: miniTimelineConfigSchema.default(
